@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chess AI Game</title>
+    <link rel="stylesheet" href="lib/chessboardjs/css/chessboard-1.0.0.css">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- JQuery -->
+    <script src="lib/jquery/jquery.min.js" defer></script>
+
+    <!-- Chess and Chesboard -->
+    <script src="lib/chessboardjs/js/chess.js" defer></script>
+    <script src="lib/chessboardjs/js/chessboard-1.0.0.js" defer></script>
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <main class="container">
+        <section id="board" class="board"></section>
+        <section class="info">
+            Search depth:
+            <select id="search-depth">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3" selected>3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+
+            <br>
+            <span>Positions evaluated: <span id="position-count"></span></span>
+            <br>
+            <span>Time: <span id="time"></span></span>
+            <br>
+            <span>Positions/s: <span id="positions-per-s"></span> </span>
+            <br>
+            <br>
+            <div id="move-history" class="move-history">
+            </div>
+        </section>
+    </main>
+
+</body>
+
+</html>
