@@ -225,7 +225,10 @@ const renderMoveHistory = (moves) => {
   historyElement.empty();
   for (let i = 0; i < moves.length; i += 2) {
     historyElement.append(
-      `<span>${moves[i]} ${moves[i + 1] ? moves[i + 1] : ' '}</span><br>`
+      `<tr class='moves'>
+        <td>• &nbsp; ${moves[i]}</td>
+        <td> ${moves[i + 1] ? moves[i + 1] : ' '}</td>
+      </tr>`
     );
   }
   historyElement.scrollTop(historyElement[0].scrollHeight);
@@ -255,7 +258,7 @@ const onMouseoutSquare = () => {
 
 let greySquare = function (square) {
   let squareEl = $('#board .square-' + square);
-
+  squareEl.css('cursor', 'grab');
   let background = '#a9a9a9';
   if (squareEl.hasClass('black-3c85d') === true) {
     background = '#696969';
@@ -281,6 +284,60 @@ const onMouseoverSquare = (square, piece) => {
 const onSnapEnd = () => {
   board.position(game.fen());
 };
+
+const opPosition = (gameFen, isBlacksMove) => {
+  game.load(gameFen);
+  board.position(game.fen());
+  if (isBlacksMove) {
+    window.setTimeout(makeBestMove, 250);
+  }
+  renderMoveHistory(game.history());
+};
+
+$('#ruyLopez').on('click', () => {
+  const fen =
+    'r1bqkbnr/pppp1ppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R b KQkq - 0 1';
+  opPosition(fen, true);
+});
+
+$('#italianGame').on('click', () => {
+  const fen =
+    'r1bqkbnr/pppp1ppp/2n5/4p3/2B1P3/5N2/PPPP1PPP/RNBQK2R b KQkq - 0 1';
+  opPosition(fen, true);
+});
+
+$('#sicillianDefense').on('click', () => {
+  const fen = 'rnbqkbnr/pp1ppppp/8/2p5/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 1';
+  opPosition(fen, false);
+});
+
+let defaultPosition =
+  'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1';
+$('#startPosition').on('click', () => {
+  opPosition(defaultPosition, false);
+});
+
+$('#reset').on('click', () => {
+  if (confirm('Are you sure you want to restart?')) {
+    opPosition(defaultPosition, false);
+  }
+});
+
+$('#showHint').on('click', () => {
+  let bestMove = getBestMove(game);
+  console.log(bestMove);
+});
+
+const undo = () => {
+  game.undo();
+  board.position(game.fen());
+};
+
+$('#previous').on('click', () => {
+  for (let i = 0; i < 2; i++) {
+    undo();
+  }
+});
 
 let config = {
   draggable: true,
