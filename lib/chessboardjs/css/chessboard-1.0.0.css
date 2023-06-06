@@ -7,6 +7,7 @@
 .board-b72b1 {
   border: 2px solid #404040;
   box-sizing: content-box;
+  box-shadow: 1px 1px 8px 2px #565252;
 }
 
 .square-55d63 {
@@ -15,11 +16,11 @@
 
   /* disable any native browser highlighting */
   -webkit-touch-callout: none;
-    -webkit-user-select: none;
-     -khtml-user-select: none;
-       -moz-user-select: none;
-        -ms-user-select: none;
-            user-select: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .white-1e1d7 {
@@ -32,7 +33,8 @@
   color: #f0d9b5;
 }
 
-.highlight1-32417, .highlight2-9c5d2 {
+.highlight1-32417,
+.highlight2-9c5d2 {
   box-shadow: inset 0 0 3px 3px yellow;
 }
 
