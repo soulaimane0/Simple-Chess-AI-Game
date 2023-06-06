@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="lib/chessboardjs/css/chessboard-1.0.0.css">
     <link rel="stylesheet" href="style.css">
 
+    <!-- Fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- JQuery -->
     <script src="lib/jquery/jquery.min.js" defer></script>
 
@@ -19,27 +23,57 @@
 </head>
 
 <body>
+    <h1>Chess AI Game</h1>
     <main class="container">
         <section id="board" class="board"></section>
         <section class="info">
-            Search depth:
-            <select id="search-depth">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3" selected>3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-            </select>
+            <div class="details">
+                <div class="search-depth">
+                    <h2>Search depth : </h2>
+                    <select id="search-depth">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3" selected>3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+                <div class="opn-position">
+                    <h2>Opening Positions</h2>
+                    <div class="opn-btns">
+                        <button id="ruyLopez">Ruy Lopez</button>
+                        <button id="italianGame">Italian Game</button>
+                        <button id="sicillianDefense">Sicillian Defense</button>
+                        <button id="startPosition">Start Position</button>
+                    </div>
+                </div>
+                <div class="advantage-prc">
+                    <h2>Advantage</h2>
+                    <p>Black has the advantage (+1652)</p>
+                    <div class="progress progress-striped">
+                        <div class="progress-bar">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <span hidden>Positions evaluated: <span id="position-count"></span></span>
+                    <h3 style="letter-spacing: 1.5px;">Time: <span id="time"></span></h3>
+                    <span hidden>Positions/s: <span id="positions-per-s"></span> </span>
+                </div>
+            </div>
+            <div class="move-tracker">
+                <div class="history-container">
+                    <table id="move-history" rules="none">
 
-            <br>
-            <span>Positions evaluated: <span id="position-count"></span></span>
-            <br>
-            <span>Time: <span id="time"></span></span>
-            <br>
-            <span>Positions/s: <span id="positions-per-s"></span> </span>
-            <br>
-            <br>
-            <div id="move-history" class="move-history">
+                    </table>
+
+                </div>
+                <div class="nav-btns">
+                    <button title="New Game" id="reset"><i class="fa-solid fa-plus"></i></button>
+                    <button title="Move Back" id="previous"><i class="fa-solid fa-chevron-left"></i></button>
+                    <button title="Move Forward" id="next"><i class="fa-solid fa-chevron-right"></i></button>
+                    <button title="Show Hint" id="showHint"><i class="fa-solid fa-lightbulb"></i></button>
+                </div>
             </div>
         </section>
     </main>
